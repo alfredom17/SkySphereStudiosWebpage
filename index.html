@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotogrametría y Drones</title>
+    <!-- Importar el componente Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <!-- Importar el archivo CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <h1>Sky Sphere Studios</h1>
+        <h3>Servicios de Fotogrametría e inspección 360</h3>
+    </header>
+
+    <!-- Navegación -->
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#modelos">Modelos 3D</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main id="modelos">
+        <h2>Explora Nuestros Modelos 3D</h2>
+        <div class="models-container">
+            <!-- Modelo 1 -->
+            <model-viewer 
+                alt="Modelo 3D interactivo 1" 
+                src="assets/3d_models/Bolsa Doritos.glb" 
+                ar
+                tone-mapping="neutral"
+                shadow-intensity="1" 
+                camera-controls 
+                touch-action="pan-y">
+            </model-viewer>
+            <!-- Modelo 2 -->
+            <model-viewer 
+                alt="Modelo 3D interactivo 2" 
+                src="assets/3d_models/Drone.glb" 
+                ar 
+                shadow-intensity="1" 
+                camera-controls 
+                touch-action="pan-y">
+            </model-viewer>
+            <!-- Modelo 3 -->
+            <model-viewer 
+                alt="Modelo 3D interactivo 3" 
+                src="assets/3d_models/Zapatos_prueba.glb" 
+                ar 
+                shadow-intensity="1" 
+                camera-controls 
+                touch-action="pan-y">
+            </model-viewer>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer id="contacto">
+        <p>© 2025 Sky Sphere Studios - Todos los derechos reservados.</p>
+        <p>Contacto: <a href="mailto:aammpg01@gmail.com">aammpg01@gmail.com</a></p>
+    </footer>
+
+    <script>
+        const models = document.querySelectorAll('model-viewer');
+        let currentIndex = 0;
+
+        function showNextModel() {
+            // Oculta el modelo actual
+            models[currentIndex].classList.remove('active');
+
+            // Incrementa el índice del modelo actual
+            currentIndex = (currentIndex + 1) % models.length;
+
+            // Muestra el siguiente modelo
+            models[currentIndex].classList.add('active');
+        }
+
+        // Cambia el modelo cada 5 segundos
+        setInterval(showNextModel, 5000);
+    </script>
+
+</body>
+</html>

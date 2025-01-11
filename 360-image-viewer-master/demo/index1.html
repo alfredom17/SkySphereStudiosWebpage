@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>360 Image Viewer</title>
+  <script src="../360-image-viewer.js"></script>
+  <script src="../canvas-fit.js"></script>
+</head>
+<body>
+  <script>
+    // Carga los módulos
+    const create360Viewer = window['360-image-viewer'];
+    const canvasFit = window['canvas-fit'];
+
+    // Carga tu imagen
+    const image = new Image();
+    image.src = 'pano_4096.jpg'; // Usa una de las imágenes en la carpeta demo
+
+    image.onload = () => {
+      // Cuando la imagen se carga, configura el visor
+      const viewer = create360Viewer({
+        image: image
+      });
+
+      // Añade el canvas al body
+      document.body.appendChild(viewer.canvas);
+
+      // Configura el tamaño del canvas a pantalla completa
+      const fit = canvasFit(viewer.canvas, window, window.devicePixelRatio);
+      window.addEventListener('resize', fit, false);
+      fit();
+
+      // Inicia el bucle de renderizado
+      viewer.start();
+    };
+  </script>
+</body>
+</html>
